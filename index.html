@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DIARRA CONNECT - Mali Call Pro</title>
+<link rel="icon" href="logo.png">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,sans-serif;background:#0f172a;color:#fff;min-height:100vh}
+.header{background:linear-gradient(90deg,#007A33,#FFCE00,#CE1126);padding:15px;text-align:center;position:sticky;top:0;z-index:10}
+.logo-box{display:flex;align-items:center;justify-content:center;gap:12px}
+.logo-img{width:55px;height:55px;border-radius:50%;background:#fff;padding:2px}
+.app-title{font-size:24px;font-weight:900;line-height:1}
+.subtitle{font-size:12px;background:rgba(0,0,0,0.7);display:inline-block;padding:3px 10px;border-radius:20px;margin-top:6px}
+.container{max-width:480px;margin:0 auto;padding:15px;padding-bottom:80px}
+.card{background:#1e293b;border-radius:18px;padding:18px;margin:14px 0;border:1px solid #334155}
+.dial-display{background:#000;border-radius:12px;padding:15px;text-align:center;font-size:28px;letter-spacing:3px;margin-bottom:12px;border:2px solid #FFCE00;min-height:65px}
+.keypad{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.key{background:#334155;border:none;border-radius:12px;padding:18px;font-size:22px;color:#fff;font-weight:bold}
+.key:active{background:#FFCE00;color:#000}
+.btn-call{background:linear-gradient(135deg,#22c55e,#007A33);color:#fff;border:none;width:100%;padding:16px;border-radius:14px;font-size:18px;font-weight:bold;margin-top:12px}
+.btn-sec{background:#334155;color:#fff;border:none;width:100%;padding:12px;border-radius:10px;margin-top:8px}
+.badge{display:inline-block;padding:4px 8px;border-radius:8px;font-size:11px;font-weight:bold;margin:2px}
+.bg-green{background:#007A33} .bg-yellow{background:#FFCE00;color:#000} .bg-red{background:#CE1126}
+.nav{position:fixed;bottom:0;left:0;right:0;background:#0f172a;border-top:1px solid #334155;display:flex;justify-content:space-around;padding:10px}
+.nav a{color:#94a3b8;text-decoration:none;font-size:12px;text-align:center}
+.nav a.active{color:#FFCE00}
+</style>
+</head>
+<body>
+<div class="header">
+<div class="logo-box">
+<img src="logo.png" class="logo-img" onerror="this.src='https://via.placeholder.com/55/FFCE00/000?text=DC'">
+<div>
+<div class="app-title">DIARRA CONNECT</div>
+<div style="font-size:12px">Mali Call Pro</div>
+</div>
+</div>
+<div class="subtitle">🇲🇱 WiFi Call Gratuit Mali - OFFICIEL</div>
+</div>
+
+<div class="container">
+<div class="card">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+<span><span class="badge bg-green">● En ligne</span> <span class="badge bg-yellow">WiFi OK</span></span>
+<span class="badge bg-red">Bamako</span>
+</div>
+<div class="dial-display" id="display">Entre numéro</div>
+<div class="keypad">
+<button class="key" onclick="tap('1')">1</button><button class="key" onclick="tap('2')">2<br><small style="font-size:8px">ABC</small></button><button class="key" onclick="tap('3')">3<br><small style="font-size:8px">DEF</small></button>
+<button class="key" onclick="tap('4')">4</button><button class="key" onclick="tap('5')">5</button><button class="key" onclick="tap('6')">6</button>
+<button class="key" onclick="tap('7')">7</button><button class="key" onclick="tap('8')">8</button><button class="key" onclick="tap('9')">9</button>
+<button class="key" onclick="tap('*')">*</button><button class="key" onclick="tap('0')">0</button><button class="key" onclick="tap('#')">#</button>
+</div>
+<button class="btn-call" onclick="callNow()">📞 APPELER VIA WIFI</button>
+<button class="btn-sec" onclick="clearNum()">⌫ Effacer</button>
+</div>
+
+<div class="card">
+<h3 style="color:#FFCE00;margin-bottom:8px">🚀 Mon Application WiFi Call</h3>
+<p style="font-size:13px;color:#cbd5e1;line-height:1.5">
+✅ Appels gratuits via WiFi<br>
+✅ Compatible Orange Mali, Malitel, Telecel<br>
+✅ Qualité HD, sans carte SIM<br>
+✅ 100% Malien - Créé par Mathias Diarra<br>
+✅ Fonctionne même à l'étranger pour appeler le Mali
+</p>
+<a href="tel:+22370000000" style="display:block;background:#FFCE00;color:#000;text-align:center;padding:12px;border-radius:10px;text-decoration:none;font-weight:bold;margin-top:10px">📲 Télécharger APK WiFi Call Mali</a>
+</div>
+
+<div class="card" style="text-align:center">
+<img src="logo.png" style="width:80px;height:80px;border-radius:50%;margin-bottom:10px" onerror="this.style.display='none'">
+<h3>Mathias Diarra</h3>
+<p style="font-size:13px;color:#94a3b8">Fondateur - DIARRA CONNECT<br>📍 Bamako, Mali<br>github.com/m65295664-creator</p>
+</div>
+</div>
+
+<div class="nav">
+<a class="active">📞<br>Appels</a><a>📋<br>Historique</a><a>👥<br>Contacts</a><a>⚙️<br>Profil</a>
+</div>
+
+<script>
+let num='';
+function tap(d){num+=d;document.getElementById('display').innerText=num}
+function clearNum(){num='';document.getElementById('display').innerText='Entre numéro'}
+function callNow(){if(num.length<5){alert('Entre un numéro malien!');return}alert('🇲🇱 DIARRA CONNECT\nConnexion WiFi vers '+num+'...\n\n✅ Appel gratuit activé via Mali Call Pro');window.location.href='tel:'+num}
+</script>
+</body>
+  </html>
