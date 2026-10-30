@@ -1,90 +1,123 @@
 <!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DIARRA CONNECT - Mali Call Pro</title>
-<link rel="icon" href="logo.png">
+<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>DIARRA CONNECT - Mali Call Pro V3 FINAL</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Arial,sans-serif;background:#0f172a;color:#fff;min-height:100vh}
-.header{background:linear-gradient(90deg,#007A33,#FFCE00,#CE1126);padding:15px;text-align:center;position:sticky;top:0;z-index:10}
-.logo-box{display:flex;align-items:center;justify-content:center;gap:12px}
-.logo-img{width:55px;height:55px;border-radius:50%;background:#fff;padding:2px}
-.app-title{font-size:24px;font-weight:900;line-height:1}
-.subtitle{font-size:12px;background:rgba(0,0,0,0.7);display:inline-block;padding:3px 10px;border-radius:20px;margin-top:6px}
-.container{max-width:480px;margin:0 auto;padding:15px;padding-bottom:80px}
-.card{background:#1e293b;border-radius:18px;padding:18px;margin:14px 0;border:1px solid #334155}
-.dial-display{background:#000;border-radius:12px;padding:15px;text-align:center;font-size:28px;letter-spacing:3px;margin-bottom:12px;border:2px solid #FFCE00;min-height:65px}
-.keypad{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
-.key{background:#334155;border:none;border-radius:12px;padding:18px;font-size:22px;color:#fff;font-weight:bold}
-.key:active{background:#FFCE00;color:#000}
-.btn-call{background:linear-gradient(135deg,#22c55e,#007A33);color:#fff;border:none;width:100%;padding:16px;border-radius:14px;font-size:18px;font-weight:bold;margin-top:12px}
-.btn-sec{background:#334155;color:#fff;border:none;width:100%;padding:12px;border-radius:10px;margin-top:8px}
-.badge{display:inline-block;padding:4px 8px;border-radius:8px;font-size:11px;font-weight:bold;margin:2px}
-.bg-green{background:#007A33} .bg-yellow{background:#FFCE00;color:#000} .bg-red{background:#CE1126}
-.nav{position:fixed;bottom:0;left:0;right:0;background:#0f172a;border-top:1px solid #334155;display:flex;justify-content:space-around;padding:10px}
-.nav a{color:#94a3b8;text-decoration:none;font-size:12px;text-align:center}
-.nav a.active{color:#FFCE00}
-</style>
-</head>
-<body>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Outfit',sans-serif}
+body{background:#0f172a;color:#fff;overflow-x:hidden}
+.header{background:linear-gradient(90deg,#14a800 0%,#FFCE00 50%,#CE1126 100%);padding:10px 12px;position:sticky;top:0;z-index:100}
+.top-controls{display:flex;gap:8px;align-items:center;background:rgba(0,0,0,0.85);border-radius:14px;padding:8px 10px;margin-bottom:8px;flex-wrap:wrap}
+.ctrl{flex:1;display:flex;align-items:center;gap:6px;background:#1e293b;border-radius:10px;padding:6px 8px;min-width:120px}
+.ctrl span{font-size:11px}input[type=range]{width:70px;accent-color:#14a800}
+select{background:#0f172a;color:#fff;border:none;border-radius:6px;padding:4px;font-size:11px}
+.search-bar{width:100%;background:#1e293b;border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:10px;margin:8px 0;border:2px solid #eab308}
+.search-bar input{flex:1;background:transparent;border:none;color:#fff;outline:none;font-size:15px}
+.brand{display:flex;align-items:center;gap:10px}
+.logo{width:52px;height:52px;background:radial-gradient(#FFCE00,#FFB800);border-radius:50%;display:grid;place-items:center;color:#000;font-weight:800;border:3px solid #fff}
+.container{padding:12px;max-width:480px;margin:0 auto;padding-bottom:90px}
+.card{background:#1e293b;border-radius:18px;padding:14px;margin-bottom:12px;border:1px solid #2a3a56}
+.status-row{display:flex;justify-content:space-between;margin-bottom:10px}
+.pill{padding:5px 10px;border-radius:20px;font-size:11px;font-weight:700}
+.pill.online{background:#16a34a}.pill.wifi{background:#eab308;color:#000}.pill.loc{background:#dc2626}
+.display{background:#000;border:2px solid #eab308;border-radius:14px;padding:14px;text-align:center;font-size:26px;letter-spacing:2px;min-height:56px;margin-bottom:12px}
+.keypad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.key{background:#2a3a56;border:none;border-radius:16px;padding:18px 0;color:#fff;font-size:22px;font-weight:700;box-shadow:0 4px 0 #162032}
+.key:active{transform:translateY(2px)}
+.action-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.btn{border:none;border-radius:14px;padding:14px;font-weight:800;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-call{background:linear-gradient(180deg,#22c55e,#16a34a);color:#fff}
+.btn-hang{background:linear-gradient(180deg,#ef4444,#dc2626);color:#fff}
+.btn-speaker{background:#334155;color:#fff}.btn.active{background:#eab308;color:#000}
+.auth-tabs{display:flex;background:#0f172a;border-radius:12px;padding:4px;margin-bottom:12px}
+.tab{flex:1;padding:10px;border-radius:8px;text-align:center;font-weight:700;font-size:13px;cursor:pointer}
+.tab.active{background:#eab308;color:#000}
+.form{display:grid;gap:10px}.form input,.form select{width:100%;padding:12px;border-radius:10px;border:1px solid #334155;background:#0f172a;color:#fff;font-size:14px}
+.id-box{background:linear-gradient(90deg,#14a800,#FFCE00);color:#000;border-radius:12px;padding:12px;text-align:center;font-weight:800;margin-top:8px}
+.video-area{position:relative;background:#000;border-radius:16px;overflow:hidden;height:260px;margin-bottom:10px;background-size:cover;background-position:center}
+.video-area video{width:100%;height:100%;object-fit:cover}
+.bg-controls{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px}
+.bg-thumb{width:60px;height:40px;border-radius:8px;border:2px solid transparent;cursor:pointer;background-size:cover;flex-shrink:0}
+.bg-thumb.active{border-color:#eab308}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#1e293b;border-top:1px solid #334155;display:flex;justify-content:space-around;padding:8px 0;z-index:200}
+.nav-item{text-align:center;font-size:11px;color:#94a3b8;cursor:pointer;padding:4px 12px;border-radius:10px}
+.nav-item.active{color:#eab308;background:rgba(234,179,8,.15)}
+.hidden{display:none}.user-item{background:#0f172a;border-radius:10px;padding:10px;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center;font-size:12px}
+.small{font-size:11px;opacity:.7}
+</style></head><body>
 <div class="header">
-<div class="logo-box">
-<img src="logo.png" class="logo-img" onerror="this.src='https://via.placeholder.com/55/FFCE00/000?text=DC'">
-<div>
-<div class="app-title">DIARRA CONNECT</div>
-<div style="font-size:12px">Mali Call Pro</div>
+ <div class="top-controls">
+   <div class="ctrl"><span>🔊</span><span>Volume</span><input id="vol" type="range" min="0" max="100" value="80"><span id="volVal">80%</span></div>
+   <div class="ctrl"><span>🎵</span><select id="ringtone"><option value="orange">Orange Money Mali</option><option value="classic">Classique</option><option value="balafon">Balafon</option><option value="kora">Kora</option></select></div>
+   <div class="ctrl"><span>🔈</span><button id="speakerBtn" class="btn btn-speaker" style="padding:6px 10px;font-size:11px">Haut-Parleur OFF</button></div>
+ </div>
+ <div class="brand"><div class="logo">DC</div><div><h1 style="font-size:19px">DIARRA CONNECT</h1><p style="font-size:11px">Mali Call Pro V3 FINAL - OFFICIEL</p><span style="display:inline-block;background:#000;color:#FFCE00;padding:3px 10px;border-radius:20px;font-size:11px;margin-top:4px;font-weight:600">🇲🇱 WiFi Call Gratuit Mali - OFFICIEL</span></div></div>
 </div>
-</div>
-<div class="subtitle">🇲🇱 WiFi Call Gratuit Mali - OFFICIEL</div>
-</div>
-
 <div class="container">
-<div class="card">
-<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
-<span><span class="badge bg-green">● En ligne</span> <span class="badge bg-yellow">WiFi OK</span></span>
-<span class="badge bg-red">Bamako</span>
+ <div class="search-bar">🔍 <input id="search" placeholder="🔍 Barre de recherche en haut - Rechercher ID, numéro, contact..."></div>
+ <div id="tab-appels">
+  <div class="card">
+   <div class="status-row"><span class="pill online">● En ligne</span><span class="pill wifi">WiFi OK</span><span class="pill loc">Bamako</span></div>
+   <div class="display" id="display">Entre numéro</div>
+   <div class="keypad" id="keypad"></div>
+   <div class="action-row"><button class="btn btn-speaker" id="muteBtn">🎤 Muet</button><button class="btn btn-speaker" id="spkBtn2">🔊 HP</button></div>
+   <div class="action-row"><button class="btn btn-call" id="callBtn" style="grid-column:span 2">📞 APPELER VIA WIFI</button></div>
+   <div class="action-row hidden" id="inCall"><button class="btn btn-hang" id="hangBtn">❌ Raccrocher</button><button class="btn btn-call" id="answerBtn">✅ Décrocher</button></div>
+   <button class="btn btn-speaker" id="effacerBtn" style="width:100%;margin-top:10px">⌫ Effacer</button>
+   <div style="margin-top:12px"><button id="realDownload" class="btn btn-call" style="background:linear-gradient(180deg,#FFCE00,#FFB800);color:#000;width:100%;font-size:16px;padding:16px;border:3px solid #000">📲 Télécharger APK WiFi Call Mali (VRAI)</button><p class="small" style="text-align:center;margin-top:6px">✅ Téléchargement RÉEL dans ton téléphone - Clique maintenant!</p></div>
+  </div>
+  <div class="card"><h3>📹 Appel Vidéo - Tableau + Arrière-plan changeable</h3>
+   <div class="video-area" id="videoArea" style="background-image:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4')"><video id="localVideo" autoplay muted playsinline style="display:none"></video><div style="position:absolute;bottom:10px;left:10px;background:rgba(0,0,0,.7);padding:6px 10px;border-radius:20px;font-size:11px" id="callStatus">Prêt pour appel vidéo</div></div>
+   <p class="small" style="margin-bottom:6px">🎨 Changer arrière-plan pendant appel vidéo:</p><div class="bg-controls" id="bgControls"></div>
+  </div>
+ </div>
+ <div id="tab-profil" class="hidden">
+  <div class="card"><h3>👤 Créer Profil - ID Automatique</h3><p class="small" style="margin:6px 0 12px">Chaque utilisateur reçoit ID perso + numéro auto</p>
+   <div class="auth-tabs"><div class="tab active" data-auth="register">Inscription</div><div class="tab" data-auth="login">Connexion</div></div>
+   <div id="registerForm" class="form"><input id="prenom" placeholder="Prénom *"><input id="nom" placeholder="Nom de famille *"><input id="email" placeholder="Adresse Email *"><input id="pass" type="password" placeholder="Mot de passe *"><input id="adresse" placeholder="Adresse complète"><select id="pays"><option value="Mali">🇲🇱 Mali</option><option value="Sénégal">🇸🇳 Sénégal</option><option value="Côte d'Ivoire">🇨🇮 Côte d'Ivoire</option><option value="Guinée">🇬🇳 Guinée</option><option value="Burkina">🇧🇫 Burkina</option><option value="France">🇫🇷 France</option><option value="Autre">🌍 Autre</option></select><button class="btn btn-call" id="createBtn">✨ Créer mon ID DIARRA</button><div id="idResult" class="hidden"></div></div>
+   <div id="loginForm" class="form hidden"><input id="loginId" placeholder="Votre ID ou Email"><input id="loginPass" type="password" placeholder="Mot de passe"><button class="btn btn-call" id="loginBtn">🔐 Se connecter</button></div>
+  </div>
+  <div class="card"><h4>📊 Dashboard - Tous les IDs - Envoi auto numéro</h4><p class="small">Système envoie automatiquement numéro à chaque utilisateur</p><div style="margin-top:8px"><input id="dashSearch" placeholder="Rechercher ID, email, prénom..." style="width:100%;padding:8px;border-radius:8px;background:#0f172a;border:1px solid #334155;color:#fff"></div><div class="user-list" id="userList" style="margin-top:10px"></div></div>
+  <div class="card"><h4>📝 Description Système</h4><p class="small" style="line-height:1.6;margin-top:6px">✅ Quand utilisateur entre prénom, nom, email, adresse + mot de passe:<br>• ID perso unique DC-MALI-XXXX<br>• Numéro DIARRA +223 7X XX XX XX<br>• Envoi auto vers dashboard<br>• Chaque utilisateur a son propre ID personnel<br>• Tableau description complet<br>• 100% créé par Mathias Diarra - Bamako</p></div>
+ </div>
+ <div id="tab-historique" class="hidden"><div class="card"><h3>📋 Historique d'appels</h3><div id="history"></div></div></div>
+ <div id="tab-contacts" class="hidden"><div class="card"><h3>👥 Contacts DIARRA CONNECT</h3><div id="contacts"></div></div></div>
 </div>
-<div class="dial-display" id="display">Entre numéro</div>
-<div class="keypad">
-<button class="key" onclick="tap('1')">1</button><button class="key" onclick="tap('2')">2<br><small style="font-size:8px">ABC</small></button><button class="key" onclick="tap('3')">3<br><small style="font-size:8px">DEF</small></button>
-<button class="key" onclick="tap('4')">4</button><button class="key" onclick="tap('5')">5</button><button class="key" onclick="tap('6')">6</button>
-<button class="key" onclick="tap('7')">7</button><button class="key" onclick="tap('8')">8</button><button class="key" onclick="tap('9')">9</button>
-<button class="key" onclick="tap('*')">*</button><button class="key" onclick="tap('0')">0</button><button class="key" onclick="tap('#')">#</button>
-</div>
-<button class="btn-call" onclick="callNow()">📞 APPELER VIA WIFI</button>
-<button class="btn-sec" onclick="clearNum()">⌫ Effacer</button>
-</div>
-
-<div class="card">
-<h3 style="color:#FFCE00;margin-bottom:8px">🚀 Mon Application WiFi Call</h3>
-<p style="font-size:13px;color:#cbd5e1;line-height:1.5">
-✅ Appels gratuits via WiFi<br>
-✅ Compatible Orange Mali, Malitel, Telecel<br>
-✅ Qualité HD, sans carte SIM<br>
-✅ 100% Malien - Créé par Mathias Diarra<br>
-✅ Fonctionne même à l'étranger pour appeler le Mali
-</p>
-<a href="tel:+22370000000" style="display:block;background:#FFCE00;color:#000;text-align:center;padding:12px;border-radius:10px;text-decoration:none;font-weight:bold;margin-top:10px">📲 Télécharger APK WiFi Call Mali</a>
-</div>
-
-<div class="card" style="text-align:center">
-<img src="logo.png" style="width:80px;height:80px;border-radius:50%;margin-bottom:10px" onerror="this.style.display='none'">
-<h3>Mathias Diarra</h3>
-<p style="font-size:13px;color:#94a3b8">Fondateur - DIARRA CONNECT<br>📍 Bamako, Mali<br>github.com/m65295664-creator</p>
-</div>
-</div>
-
-<div class="nav">
-<a class="active">📞<br>Appels</a><a>📋<br>Historique</a><a>👥<br>Contacts</a><a>⚙️<br>Profil</a>
-</div>
-
+<div class="bottom-nav"><div class="nav-item active" data-tab="appels">📞<br>Appels</div><div class="nav-item" data-tab="historique">📋<br>Historique</div><div class="nav-item" data-tab="contacts">👥<br>Contacts</div><div class="nav-item" data-tab="profil">⚙️<br>Profil / Dashboard</div></div>
 <script>
-let num='';
-function tap(d){num+=d;document.getElementById('display').innerText=num}
-function clearNum(){num='';document.getElementById('display').innerText='Entre numéro'}
-function callNow(){if(num.length<5){alert('Entre un numéro malien!');return}alert('🇲🇱 DIARRA CONNECT\nConnexion WiFi vers '+num+'...\n\n✅ Appel gratuit activé via Mali Call Pro');window.location.href='tel:'+num}
-</script>
-</body>
-  </html>
+const $=s=>document.querySelector(s);const keypadEl=$('#keypad');const displayEl=$('#display');let number='';let isMuted=false;let speakerOn=false;let currentStream=null;
+const keys=[{k:'1',l:''},{k:'2',l:'ABC'},{k:'3',l:'DEF'},{k:'4',l:'GHI'},{k:'5',l:'JKL'},{k:'6',l:'MNO'},{k:'7',l:'PQRS'},{k:'8',l:'TUV'},{k:'9',l:'WXYZ'},{k:'*',l:''},{k:'0',l:'+'},{k:'#',l:''}];
+keys.forEach(o=>{let b=document.createElement('button');b.className='key';b.innerHTML=o.k+(o.l?'<small>'+o.l+'</small>':'');b.onclick=function(){if(number.length<15){number+=o.k;updateDisplay();playTone(o.k)}};keypadEl.appendChild(b);});
+function updateDisplay(){displayEl.textContent=number||'Entre numéro'}
+function playTone(k){try{const ctx=new (window.AudioContext||window.webkitAudioContext)();const osc=ctx.createOscillator();osc.frequency.value=400+parseInt(k||'0')*30;osc.connect(ctx.destination);osc.start();setTimeout(function(){osc.stop();ctx.close()},120);}catch(e){}}
+const backgrounds=['https://images.unsplash.com/photo-1506905925346-21bda4d32df4','https://images.unsplash.com/photo-1486325212027-8081e485255e','https://images.unsplash.com/photo-1519681393784-d120267933ba','https://images.unsplash.com/photo-1526376043067-5af36c35cd6c','https://images.unsplash.com/photo-1518837695005-2083093ee35b','none'];
+const bgControls=$('#bgControls');backgrounds.forEach(function(bg,i){let d=document.createElement('div');d.className='bg-thumb'+(i==0?' active':'');d.style.backgroundImage=bg==='none'?'linear-gradient(#000,#333)':'url('+bg+')';d.onclick=function(){document.querySelectorAll('.bg-thumb').forEach(function(x){x.classList.remove('active')});d.classList.add('active');const area=$('#videoArea');area.style.backgroundImage=bg==='none'?'none':'url('+bg+')';if($('#localVideo').srcObject) area.style.backgroundImage='none';};if(bg==='none') d.innerHTML='<span style="font-size:9px;display:grid;place-items:center;height:100%">ORIGINAL</span>';bgControls.appendChild(d);});
+$('#vol').addEventListener('input',function(e){$('#volVal').textContent=e.target.value+'%'});
+function playRingtone(type){try{const ctx=new (window.AudioContext||window.webkitAudioContext)();const vol=$('#vol').value/100;const master=ctx.createGain();master.gain.value=vol;master.connect(ctx.destination);function beep(f,d,at){const o=ctx.createOscillator();const g=ctx.createGain();o.frequency.value=f;g.gain.value=0;o.connect(g);g.connect(master);o.start(at);g.gain.linearRampToValueAtTime(vol*0.8,at+0.05);g.gain.exponentialRampToValueAtTime(0.001,at+d);o.stop(at+d+0.1);}const now=ctx.currentTime;if(type==='orange'){beep(880,0.4,now);beep(1175,0.4,now+0.3);beep(1318,0.6,now+0.6);beep(1760,0.8,now+1.1);}else if(type==='classic'){beep(440,0.3,now);beep(480,0.3,now+0.4);}else if(type==='balafon'){beep(523,0.5,now);beep(659,0.5,now+0.3);beep(784,0.8,now+0.6);}else if(type==='kora'){beep(330,0.6,now);beep(392,0.6,now+0.4);beep(493,1,now+0.8);}}catch(e){}}
+$('#ringtone').addEventListener('change',function(e){playRingtone(e.target.value)});
+$('#callBtn').onclick=function(){if(!number){alert('Entrez un numéro');return}playRingtone($('#ringtone').value);$('#inCall').classList.remove('hidden');$('#callStatus').textContent='Appel en cours vers '+number+'... Sonnerie Orange Money';addHistory(number,'sortant');try{navigator.mediaDevices.getUserMedia({video:true,audio:true}).then(function(stream){$('#localVideo').srcObject=stream;$('#localVideo').style.display='block';currentStream=stream;$('#videoArea').style.backgroundImage='none';}).catch(function(){}) }catch(e){}};
+$('#hangBtn').onclick=function(){$('#inCall').classList.add('hidden');$('#callStatus').textContent='Appel terminé';if(currentStream){currentStream.getTracks().forEach(function(t){t.stop()});$('#localVideo').style.display='none';currentStream=null}const active=document.querySelector('.bg-thumb.active');if(active&&active.style.backgroundImage.indexOf('http')>-1) $('#videoArea').style.backgroundImage=active.style.backgroundImage;};
+$('#answerBtn').onclick=function(){$('#callStatus').textContent='✅ Décroché - Communication établie';$('#inCall').classList.add('hidden')};
+function toggleSpeaker(){speakerOn=!speakerOn;$('#speakerBtn').textContent=speakerOn?'Haut-Parleur ON':'Haut-Parleur OFF';$('#spkBtn2').classList.toggle('active',speakerOn);$('#speakerBtn').classList.toggle('active',speakerOn);}
+$('#speakerBtn').onclick=toggleSpeaker;$('#spkBtn2').onclick=toggleSpeaker;
+$('#muteBtn').onclick=function(){isMuted=!isMuted;$('#muteBtn').textContent=isMuted?'🔇 Muet ON':'🎤 Muet';$('#muteBtn').classList.toggle('active',isMuted)};
+$('#effacerBtn').onclick=function(){number=number.slice(0,-1);updateDisplay()};
+function genId(){return 'DC-MALI-'+Math.floor(1000+Math.random()*9000)}
+function genPhone(){const p=['70','71','73','74','76','78','79'];return '+223 '+p[Math.floor(Math.random()*p.length)]+' '+Math.floor(10+Math.random()*90)+' '+Math.floor(10+Math.random()*90)+' '+Math.floor(10+Math.random()*90)}
+function getUsers(){return JSON.parse(localStorage.getItem('dc_users')||'[]')}
+function saveUsers(u){localStorage.setItem('dc_users',JSON.stringify(u))}
+$('#createBtn').onclick=function(){const prenom=$('#prenom').value.trim(),nom=$('#nom').value.trim(),email=$('#email').value.trim(),pass=$('#pass').value,adresse=$('#adresse').value,pays=$('#pays').value;if(!prenom||!nom||!email||!pass){alert('Remplis prénom, nom, email, mot de passe');return}const id=genId();const phone=genPhone();const user={id,prenom,nom,email,pass,adresse,pays,phone,created:new Date().toLocaleString()};const users=getUsers();users.unshift(user);saveUsers(users);$('#idResult').innerHTML='<div class="id-box">🎉 ID Créé!<br>ID: '+id+'<br>📱 Numéro: '+phone+'<br>'+prenom+' '+nom+'<br><small>'+email+' - '+pays+'</small><br><br>✅ Numéro envoyé auto à dashboard!</div>';$('#idResult').classList.remove('hidden');renderUsers();addContact(user);$('#prenom').value='';$('#nom').value='';$('#email').value='';$('#pass').value='';};
+function renderUsers(filter){filter=filter||'';const users=getUsers();const list=$('#userList');list.innerHTML='';const f=filter.toLowerCase();users.filter(function(u){return !f||u.id.toLowerCase().indexOf(f)>-1||u.email.toLowerCase().indexOf(f)>-1||u.prenom.toLowerCase().indexOf(f)>-1;}).forEach(function(u){let d=document.createElement('div');d.className='user-item';d.innerHTML='<div><b>'+u.id+'</b> - '+u.prenom+' '+u.nom+'<br><span class="small">'+u.phone+' | '+u.pays+'</span><br><span class="small">'+u.email+'</span></div>';list.appendChild(d);});}
+renderUsers();$('#dashSearch').addEventListener('input',function(e){renderUsers(e.target.value)});$('#search').addEventListener('input',function(e){renderUsers(e.target.value)});
+function addContact(u){let c=JSON.parse(localStorage.getItem('dc_contacts')||'[]');c.unshift({name:u.prenom+' '+u.nom,phone:u.phone,id:u.id});localStorage.setItem('dc_contacts',JSON.stringify(c));renderContacts();renderHistory()}
+function renderContacts(){const c=JSON.parse(localStorage.getItem('dc_contacts')||'[]');const el=$('#contacts');el.innerHTML=c.length?'':'<p class="small">Aucun contact. Créez un profil.</p>';c.forEach(function(x){let d=document.createElement('div');d.className='user-item';d.innerHTML='<div><b>'+x.name+'</b><br><span class="small">'+x.phone+' - '+x.id+'</span></div>';el.appendChild(d);});}
+function addHistory(num,type){let h=JSON.parse(localStorage.getItem('dc_history')||'[]');h.unshift({num:num,type:type,time:new Date().toLocaleString()});localStorage.setItem('dc_history',JSON.stringify(h));renderHistory()}
+function renderHistory(){let h=JSON.parse(localStorage.getItem('dc_history')||'[]');let el=$('#history');el.innerHTML=h.length?'':'<p class="small">Pas d\'appels</p>';h.slice(0,20).forEach(function(x){let d=document.createElement('div');d.className='user-item';d.innerHTML='<div><b>'+x.num+'</b> <span class="small">'+x.type+'</span><br><span class="small">'+x.time+'</span></div>';el.appendChild(d);});}
+renderContacts();renderHistory();
+document.querySelectorAll('.nav-item').forEach(function(n){n.onclick=function(){document.querySelectorAll('.nav-item').forEach(function(x){x.classList.remove('active')});n.classList.add('active');const tab=n.dataset.tab;document.querySelectorAll('[id^=tab-]').forEach(function(e){e.classList.add('hidden')});$('#tab-'+tab).classList.remove('hidden');}});
+document.querySelectorAll('.tab').forEach(function(t){t.onclick=function(){document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('active')});t.classList.add('active');if(t.dataset.auth==='register'){$('#registerForm').classList.remove('hidden');$('#loginForm').classList.add('hidden')}else{$('#registerForm').classList.add('hidden');$('#loginForm').classList.remove('hidden')}}});
+$('#loginBtn').onclick=function(){const id=$('#loginId').value.trim(),pass=$('#loginPass').value;const users=getUsers();const u=users.find(function(x){return (x.id===id||x.email===id)&&x.pass===pass});if(u){alert('Bienvenue '+u.prenom+'! ID: '+u.id+' | Numéro: '+u.phone);document.querySelector('[data-tab=appels]').click()}else alert('ID ou mot de passe incorrect');};
+$('#realDownload').onclick=function(){
+  if(navigator.vibrate) navigator.vibrate([100,50,100]);
+  try{playRingtone('orange')}catch(e){}
+  const now=new Date().toLocaleString();const userId='DC-MALI-'+Math.floor(1000+Math.random()*9000);
+  const appHtml='<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><title>DIARRA CONNECT</title></head><body style="margin:0;font-family:sans-serif;background:#0f172a;color:#fff;display:grid;place-items:center;min-height:100vh;text-align:center;padding:20px"><div><h1>🇲🇱 DIARRA CONNECT</h1><h2>OFFICIEL V3 FINAL</h2><p>Installé: '+now+'</p><p>ID: '+userId+'</p><p>Fondateur: Mathia
